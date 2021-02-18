@@ -4,5 +4,4 @@ export default interface ICreatePersonDTO {
   first_room: string;
   second_room: string;
   coffe_room: string;
-
 }
