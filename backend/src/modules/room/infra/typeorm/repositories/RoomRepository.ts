@@ -1,6 +1,6 @@
 import ICreateRoomDTO from '@modules/room/dtos/ICreateRoomDTO';
 import IRoomRepository from '@modules/room/repositories/IRoomRepository';
-import { getRepository, Raw, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import Room from '../entities/Room';
 
 class RoomRepository implements IRoomRepository {
@@ -10,12 +10,57 @@ class RoomRepository implements IRoomRepository {
     this.ormRepository = getRepository(Room);
   }
 
-  public async create({
-    name,
-    capacity,
-    type,
+  public async showRoom(room_id: string): Promise<Room | undefined> {
+    const room = this.ormRepository.findOne({ where: { id: room_id } });
 
-  }: ICreateRoomDTO): Promise<Room> {
+    return room;
+  }
+
+  public async findMaxCapacity(): Promise<number> {
+    const eventRooms = await this.ormRepository.find({
+      where: {
+        type: 'event',
+      },
+    });
+    let smallCapacity: number = eventRooms[0].capacity;
+    let largeCapacity = 0;
+    let maxCapacity = 0;
+
+    eventRooms.forEach(room => {
+      if (room.capacity >= largeCapacity) {
+        largeCapacity = room.capacity;
+      }
+
+      if (room.capacity <= smallCapacity) {
+        smallCapacity = room.capacity;
+      }
+    });
+
+    if (smallCapacity !== largeCapacity) {
+      maxCapacity = smallCapacity * 2 + 1;
+    } else {
+      maxCapacity = smallCapacity * 2;
+    }
+
+    return maxCapacity;
+  }
+
+  public async findByType(type?: 'event' | 'coffe'): Promise<Room[]> {
+    const rooms = type
+      ? this.ormRepository.find({
+          where: {
+            type,
+          },
+          order: {
+            capacity: 'DESC',
+          },
+        })
+      : this.ormRepository.find({ order: { capacity: 'DESC' } });
+
+    return rooms;
+  }
+
+  public async create({ name, capacity, type }: ICreateRoomDTO): Promise<Room> {
     const room = this.ormRepository.create({
       name,
       capacity: Number(capacity),

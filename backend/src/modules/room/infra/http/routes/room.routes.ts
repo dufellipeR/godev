@@ -17,4 +17,16 @@ roomRouter.post(
   roomController.create,
 );
 
+roomRouter.get('/', roomController.list);
+
+roomRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  roomController.show,
+);
+
 export default roomRouter;

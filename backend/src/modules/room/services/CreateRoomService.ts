@@ -1,4 +1,3 @@
-import { format, getHours, isBefore, startOfHour } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
@@ -18,11 +17,17 @@ class CreateRoomService {
     private roomRepository: IRoomRepository,
   ) {}
 
-  public async execute({
-    name,
-    capacity,
-    type,
-  }: IRequestDTO): Promise<Room> {
+  public async execute({ name, capacity, type }: IRequestDTO): Promise<Room> {
+    const eventsRooms = await this.roomRepository.findByType('event');
+    const coffeRooms = await this.roomRepository.findByType('coffe');
+
+    if (eventsRooms.length >= 2 && type === 'event') {
+      throw new AppError("Max event's room limit reached");
+    }
+
+    if (coffeRooms.length >= 2 && type === 'coffe') {
+      throw new AppError("Max coffe's room limit reached");
+    }
 
     const room = await this.roomRepository.create({
       name,
