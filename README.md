@@ -26,7 +26,6 @@
   <a href="#-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-how-to-contribute">How to contribute</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-license">License</a>
 </p>
 
@@ -35,8 +34,6 @@
     <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia">
   </a>
 </p> -->
-
-<img alt="Layout" src="https://res.cloudinary.com/eliasgcf/image/upload/v1587423410/GOFinances/mockup_lqgnbt.png">
 
 ## 💰 About the project
 
@@ -79,7 +76,7 @@ Technologies that I used to develop this api
 **Clone the project and access the folder**
 
 ```bash
-$ git clone https://github.com/dufellipeR/GOFinances.git && cd GOFinances
+$ git clone https://github.com/dufellipeR/godev.git && cd godev
 ```
 
 **Follow the steps below**
@@ -101,6 +98,9 @@ $ docker run --name GOFinances-postgres -e POSTGRES_USER=postgres -e POSTGRES_PA
 
 # Once the services are running, run the migrations
 $ yarn typeorm migration:run
+
+# To verify unit tests
+$ yarn test
 
 # To finish, run the api service
 $ yarn dev:server
