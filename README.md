@@ -11,7 +11,7 @@
   
   <!-- <img alt="Repository size" src="https://img.shields.io/github/repo-size/dufellipeR/GOFinances?color=%235636D3"> -->
   
-  <a href="https://github.com/dufellipeR/godev/commits/master">
+  <a href="https://github.com/dufellipeR/godev/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dufellipeR/GOFinances?color=%235636D3">
   </a>
   
