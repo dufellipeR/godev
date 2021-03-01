@@ -1,22 +1,21 @@
-import React, { useState, useEffect, FormEvent } from 'react';
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import api from '../../services/api';
-
-import { Title } from './styles';
+import teamProject from '../../assets/project_team.svg';
+import { Title, Container, Main, Image } from './styles';
 
 const Dashboard: React.FC = () => {
   // CODE
 
   return (
-    <>
-      <Title>
-        <FiChevronLeft size={20} />
-        Minimalist Template Typescript React
-        <FiChevronRight size={20} />
-      </Title>
-
-    </>
+    <Container>
+      <Main>
+        <Title>Go Dev</Title>
+        <Link to="rooms">Iniciar Evento</Link>
+      </Main>
+      <Image>
+        <img src={teamProject} alt="Projeto de Time" />
+      </Image>
+    </Container>
   );
 };
 
