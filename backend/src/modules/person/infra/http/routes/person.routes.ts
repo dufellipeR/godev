@@ -16,4 +16,16 @@ personRouter.post(
   personController.create,
 );
 
+personRouter.get('/', personController.list);
+
+personRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  personController.show,
+);
+
 export default personRouter;

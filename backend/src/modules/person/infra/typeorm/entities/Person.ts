@@ -1,3 +1,4 @@
+import Room from '@modules/room/infra/typeorm/entities/Room';
 import {
   Entity,
   Column,
@@ -12,32 +13,38 @@ class Person {
   id: string;
 
   @Column()
-  name: string
+  name: string;
 
   @Column()
-  last_name: string
+  last_name: string;
 
   @Column()
-  first_room: string;
+  stage1_room?: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  firstRoom: User;
-
-  @Column()
-  second_room: string;
-
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  secondRoom: User;
+  @ManyToOne(() => Room)
+  @JoinColumn({ name: 'stage1_room' })
+  first_room: Room;
 
   @Column()
-  coffe_room: string;
+  stage2_room?: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  coffeRoom: User;
+  @ManyToOne(() => Room)
+  @JoinColumn({ name: 'stage2_room' })
+  second_room: Room;
 
+  @Column()
+  coffe1_room?: string;
+
+  @ManyToOne(() => Room)
+  @JoinColumn({ name: 'coffe1_room' })
+  coffe1Room: Room;
+
+  @Column()
+  coffe2_room?: string;
+
+  @ManyToOne(() => Room)
+  @JoinColumn({ name: 'coffe2_room' })
+  coffe2Room: Room;
 }
 
 export default Person;
