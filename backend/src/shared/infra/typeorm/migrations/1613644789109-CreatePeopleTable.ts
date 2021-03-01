@@ -1,10 +1,10 @@
-import { query } from "express";
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreatePeopleTable1613644789109 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.createTable(new Table({
+export default class CreatePeopleTable1613644789109
+  implements MigrationInterface {
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createTable(
+      new Table({
         name: 'people',
         columns: [
           {
@@ -24,12 +24,12 @@ export default class CreatePeopleTable1613644789109 implements MigrationInterfac
             type: 'varchar',
             isNullable: false,
           },
-        ]
-      }))
-    }
+        ],
+      }),
+    );
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable('people')
-    }
-
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('people');
+  }
 }
