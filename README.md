@@ -87,7 +87,7 @@ $ cd backend
 $ yarn
 
 # Create the instance of postgreSQL using docker
-$ docker run --name GOFinances-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=postgresql -p 5432:5432 -d postgres
+$ docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=godev_postgres -p 5432:5432 -d bitnami/postgres
 
 # Make sure the keys in 'ormconfig.json' to connect with your database
 # are set up correctly.
